@@ -4,7 +4,7 @@
 실행 시 단일 GPU(50GB 이하 VRAM) 환경에서 전체 파이프라인이 동작하도록 최적화하였습니다.
 
 <p align="center">
-  <img src="framework_figure_final.png" alt="Framework" width="800"/>
+  <img src="framework_figure_final.png" alt="Framework" width="1000"/>
 </p>
 ---
 
