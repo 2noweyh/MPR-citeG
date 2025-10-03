@@ -3,6 +3,9 @@
 베이스라인을 확장하여 자체적인 **재순위 전략(Re-ranking)** 및 **문맥 확장(Context Expansion)** 방법을 적용하였으며,  
 실행 시 단일 GPU(50GB 이하 VRAM) 환경에서 전체 파이프라인이 동작하도록 최적화하였습니다.
 
+<p align="center">
+  <img src="framework_figure_final.png" alt="Framework" width="600"/>
+</p>
 ---
 
 ## 📂 프로젝트 구조
