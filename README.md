@@ -1,5 +1,5 @@
 # MPR-CiteG
-본 레포지토리는 **SAI Challenge** 참가를 위해 구축한 RAG 기반 파이프라인 코드입니다.  
+본 레포지토리는 [**SAI Challenge**](https://www.kaggle.com/competitions/sai-challenge/overview) 참가를 위해 구축한 RAG 기반 파이프라인 코드입니다.  
 베이스라인을 확장하여 자체적인 **재순위 전략(Re-ranking)** 및 **문맥 확장(Context Expansion)** 방법을 적용하였으며,  
 실행 시 단일 GPU(50GB 이하 VRAM) 환경에서 전체 파이프라인이 동작하도록 최적화하였습니다.
 
