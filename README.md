@@ -6,6 +6,7 @@
 <p align="center">
   <img src="framework_figure_final.png" alt="Framework" width="1000"/>
 </p>
+
 ---
 
 ## 📂 프로젝트 구조
