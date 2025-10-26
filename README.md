@@ -1,7 +1,8 @@
 # MPR-CiteG
-본 레포지토리는 [**SAI Challenge**](https://www.kaggle.com/competitions/sai-challenge/overview) 참가를 위해 구축한 RAG 기반 파이프라인 코드입니다.  
-베이스라인을 확장하여 자체적인 **재순위 전략(Re-ranking)** 및 **문맥 확장(Context Expansion)** 방법을 적용하였으며,  
-실행 시 단일 GPU(50GB 이하 VRAM) 환경에서 전체 파이프라인이 동작하도록 최적화하였습니다.
+
+This repository contains the Retrieval-Augmented Generation (RAG) pipeline developed for participation in the [**SAI Challenge**](https://www.kaggle.com/competitions/sai-challenge/overview).
+It introduces a multi-portfolio–based query expansion method combined with a citation-grounded answer generation module.
+The entire pipeline is optimized to run on a **single GPU (≤50 GB VRAM)** environment.
 
 <p align="center">
   <img src="framework_figure_final.png" alt="Framework" width="1000"/>
@@ -9,80 +10,80 @@
 
 ---
 
-## 📂 프로젝트 구조
+## 📂 Project Structure
 
 ```
-
-RAG\_final/
-├── main.py                        # 실행 엔트리포인트
-├── configs/                       # 설정 파일 및 credential
+RAG_final/
+├── main.py                        # Entry point for execution
+├── configs/                       # Configuration files and credentials
 ├── data/
-│   └── test.csv                   # 제공된 과학 질문 데이터셋 (50개)
+│   └── test.csv                   # Provided scientific question dataset (50 samples)
 ├── outputs/
-│   └── final\_submit\_v1.csv        # 최종 제출 결과 (정답 파일)
-├── pipelines/                     # 파이프라인 모듈
+│   └── final_submit_v1.csv        # Final submission results
+├── pipelines/                     # Core pipeline modules
 │   ├── generation.py
 │   ├── planners.py
-│   ├── retrieval\_pipeline.py
-│   ├── scienceon\_api\_example.py
+│   ├── retrieval_pipeline.py
+│   ├── scienceon_api_example.py
 │   └── utils.py
-├── environment.yml                # Conda 가상환경 설정 파일 
-└── requirements.txt               # 실행 환경 의존성
-
-````
+├── environment.yml                # Conda environment configuration
+└── requirements.txt               # Python dependency list
+```
 
 ---
 
-## 🚀 실행 방법
+## 🚀 How to Run
 
-### 1. 환경 세팅
+### 1. Environment Setup
+
 ```bash
 conda env create -f environment.yml
 conda activate sai
 pip install -r requirements.txt
-````
+```
 
-### 2. 실행
+### 2. Execution
 
 ```bash
 python main.py --device 0
 ```
 
-* `--device N` : 사용할 GPU index (예: `--device 5`)
-* 실행 완료 후 최종 결과는 `outputs/final_submit_v1.csv` 로 저장됩니다.
+* `--device N`: GPU index to use (e.g., `--device 5`)
+* After completion, the final output file will be saved as `outputs/final_submit_v1.csv`.
 
 ---
 
-## 📑 출력 파일
+## 📑 Output File
 
 * `outputs/final_submit_v1.csv`
-  → 50개 과학 질문에 대한 최종 답변 및 참조 결과
-  → 이 파일이 제출용 정답 파일입니다.
+  → Contains the final answers and citations for all 50 scientific questions.
+  → This file is used as the official submission file.
 
 ---
 
-## 🖥️ 실행 환경
+## 🖥️ Execution Environment
 
 * **OS**: Ubuntu 20.04.6 LTS (Focal Fossa)
 * **Python**: 3.11
 * **CUDA**: 12.2
 * **NVIDIA Driver**: 535.104.05
-* **GPU**: NVIDIA RTX A6000 (VRAM 49GB) × 1
-* **메모리 사용 제한**: 50GB 이하
+* **GPU**: NVIDIA RTX A6000 (49 GB VRAM) × 1
+* **Memory Usage Limit**: ≤ 50 GB
 
 ---
 
-## 📝 추가 사항
+## 📝 Additional Notes
 
-* 파이프라인은 제공된 ScienceON API 클라이언트를 기반으로 문헌 검색을 수행합니다.  
-* Re-ranking은 `BAAI/bge-reranker-v2-m3` 모델 기반 CrossEncoder를 사용합니다.  
-* Answer Generation은 HuggingFace Transformers 기반 LLM을 사용하여 수행합니다.  
-  - 기본 모델: `Qwen2.5-14B-Instruct`  
-  - 대체 가능 모델: `KISTI-KONI/KONI-Llama3.1-8B-Instruct` (동일 파이프라인에서 실행 가능)
+* The pipeline retrieves relevant scientific documents via the official **ScienceON API Client**.
+* Re-ranking is performed using the **`BAAI/bge-reranker-v2-m3`** CrossEncoder model.
+* Answer generation is handled by a Hugging Face Transformers–based LLM.
+
+  * Default model: `Qwen2.5-14B-Instruct`
+  * Alternative model: `KISTI-KONI/KONI-Llama3.1-8B-Instruct` (compatible with the same pipeline)
 
 ---
 
-## 📧 문의
+## 📧 Contact
 
-본 코드는 SAI Challenge 제출을 위해 준비되었으며,
-추가 문의사항은 운영팀 지침에 따라 제공 가능합니다.
+This repository was prepared for submission to the **SAI Challenge**.
+For further inquiries, please refer to the competition organizers’ official communication channels.
